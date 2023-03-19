@@ -16,9 +16,11 @@ function TodoInput({ handleSubmit }: IProps) {
   const [todo, setTodo] = useState<TodoType>(initalTodoValue);
 
   const handleTodoValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
-    const todoValue = e.target.value;
-    const todoInfo = { content: todoValue, id: createId(), completed: false };
+    const todoInfo = {
+      content: e.target.value,
+      id: createId(),
+      completed: false,
+    };
     setTodo(todoInfo);
   };
   const handleTodoSubmit = (e: React.FormEvent<HTMLFormElement>) => {

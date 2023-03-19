@@ -1,9 +1,12 @@
 import React from "react";
-
-const TodoItem = ({ todo }) => {
+import { TodoType } from "./../type/todoType";
+interface IProps {
+  todo: TodoType;
+}
+const TodoItem = ({ todo }: IProps) => {
   return (
     <>
-      <div>{todo.value}</div>
+      <div>{todo.content}</div>
       <br />
     </>
   );
