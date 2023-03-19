@@ -8,11 +8,12 @@ interface IProps {
   ) => void;
 }
 function TodoInput({ handleSubmit }: IProps) {
-  const [todo, setTodo] = useState<TodoType>({
+  const initalTodoValue = {
     content: "",
     id: "",
     completed: false,
-  });
+  };
+  const [todo, setTodo] = useState<TodoType>(initalTodoValue);
 
   const handleTodoValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e);
@@ -20,12 +21,16 @@ function TodoInput({ handleSubmit }: IProps) {
     const todoInfo = { content: todoValue, id: createId(), completed: false };
     setTodo(todoInfo);
   };
+  const handleTodoSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    handleSubmit(e, todo);
+    setTodo(initalTodoValue);
+  };
 
   return (
     <>
       <form
         onSubmit={(e) => {
-          handleSubmit(e, todo);
+          handleTodoSubmit(e);
         }}
       >
         <input

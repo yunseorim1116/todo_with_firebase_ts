@@ -1,5 +1,7 @@
 import React from "react";
 import { TodoType } from "./../type/todoType";
+import TodoItem from "./TodoItem";
+
 interface IProps {
   todoList: TodoType[];
 }
@@ -9,8 +11,7 @@ const TodoList = ({ todoList }: IProps) => {
       {todoList.map((todo: TodoType) => {
         return (
           <>
-            <span>{todo.content}</span>
-            <br />
+            <TodoItem todo={todo} />
           </>
         );
       })}
