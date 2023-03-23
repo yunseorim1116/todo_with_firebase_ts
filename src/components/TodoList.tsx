@@ -4,14 +4,15 @@ import TodoItem from "./TodoItem";
 
 interface IProps {
   todoList: TodoType[];
+  handleChangeChecked: (id: string) => void;
 }
-const TodoList = ({ todoList }: IProps) => {
+const TodoList = ({ todoList, handleChangeChecked }: IProps) => {
   return (
     <>
       {todoList.map((todo: TodoType) => {
         return (
           <>
-            <TodoItem todo={todo} />
+            <TodoItem todo={todo} handleChangeChecked={handleChangeChecked} />
           </>
         );
       })}

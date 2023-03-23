@@ -2,11 +2,17 @@ import React from "react";
 import { TodoType } from "./../type/todoType";
 interface IProps {
   todo: TodoType;
+  handleChangeChecked: (id: string) => void;
 }
-const TodoItem = ({ todo }: IProps) => {
+const TodoItem = ({ todo, handleChangeChecked }: IProps) => {
   return (
     <>
-      <div>{todo.content}</div>
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onClick={() => handleChangeChecked(todo.id)}
+      />
+      <span>{todo.content}</span>
       <br />
     </>
   );

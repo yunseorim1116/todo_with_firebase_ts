@@ -9,7 +9,6 @@ console.log(db);
 const TodoConatiner = () => {
   const [todoList, setTodoList] = useState<TodoType[]>([]);
   const todoCollectionRef = collection(db, "todo");
-  console.log(todoCollectionRef);
 
   useEffect(() => {
     const getTodoList = async () => {
@@ -20,8 +19,8 @@ const TodoConatiner = () => {
           content: doc.data().content,
           completed: doc.data().completed,
         }));
-        console.log(todo);
-        setTodoList(todo);
+        // console.log(todo);
+        // setTodoList(todo);
       } catch (error) {
         console.log("Error getting users: ", error);
       }
@@ -36,10 +35,19 @@ const TodoConatiner = () => {
     e.preventDefault();
     setTodoList([...todoList, newTodo]);
   };
+
+  const handleChangeChecked = (id: string) => {
+    const newTotoList = todoList.map((todo: TodoType) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+
+    setTodoList(newTotoList);
+  };
+
   return (
     <>
       <TodoInput handleSubmit={handleSubmit} />
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} handleChangeChecked={handleChangeChecked} />
     </>
   );
 };
